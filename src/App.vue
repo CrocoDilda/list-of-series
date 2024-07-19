@@ -1,9 +1,23 @@
 <script setup lang="ts">
-console.log('start')
+import { provide } from 'vue'
+import StartScreen from './pages/start_screen/StartScreen.vue'
+
+const appName = 'Delayed Viewing'
+provide('appName', appName)
 </script>
 
 <template>
-  <h1>Hello World</h1>
+  <div class="start--wrapper">
+    <StartScreen v-if="false" class="start-screen" />
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.start--wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0 15vw;
+}
+</style>

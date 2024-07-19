@@ -17,6 +17,8 @@ coverage
 .vscode
 .eslintrc.cjs
 vite.config.ts
+tz-for-chatgpt.txt
+key-api.txt
 
 /cypress/videos/
 /cypress/screenshots/
