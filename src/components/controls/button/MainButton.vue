@@ -21,7 +21,7 @@ defineProps<Props>()
     background-color 0.2s,
     color 0.2s;
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 }
 </style>
