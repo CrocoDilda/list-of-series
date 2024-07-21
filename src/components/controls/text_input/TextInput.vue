@@ -1,6 +1,7 @@
 <script setup lang="ts">
 type Props = {
   placeholder?: string
+  inputType: string
 }
 
 defineProps<Props>()
@@ -8,7 +9,7 @@ const model = defineModel<string>()
 </script>
 
 <template>
-  <input :placeholder="placeholder" v-model="model" class="text-input" type="text" />
+  <input :placeholder="placeholder" v-model="model" class="text-input" :type="inputType" />
 </template>
 
 <style scoped>

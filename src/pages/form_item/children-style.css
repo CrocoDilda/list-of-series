@@ -1,0 +1,42 @@
+.wrappe {
+  margin: 0 auto;
+  max-width: 400px;
+  width: 100%;
+  padding: 40px 30px;
+  background-color: var(--color-gray);
+  border-radius: 20px;
+}
+
+.inner {
+  display: grid;
+  gap: 30px;
+}
+
+.title {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.innerr {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr auto;
+  gap: 30px;
+  justify-content: space-between;
+}
+
+.button {
+  background-color: var(--color-main-green);
+}
+
+.change-form {
+  background-color: transparent;
+  color: var(--color-main-green);
+  transition:
+    color 0.2s,
+    bacground-color 0.2s;
+  &:hover {
+    color: var(--color-main-black);
+    background-color: var(--color-main-white);
+  }
+}

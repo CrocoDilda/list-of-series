@@ -4,13 +4,12 @@ import IconClapperboard from '../../components/icons/IconClapperboard.vue'
 import MainButton from '../../components/controls/button/MainButton.vue'
 import './style.css'
 const appName = inject('appName')
+
+const emit = defineEmits(['callForm'])
 </script>
 
 <template>
   <div class="wrapper">
-    <header class="header">
-      <p class="app-name">{{ appName }}</p>
-    </header>
     <main class="content">
       <section class="title">
         <IconClapperboard class="title--icon" />
@@ -26,8 +25,16 @@ const appName = inject('appName')
         </p>
       </section>
       <section class="start">
-        <MainButton class="button sing-in--button" text="Sing in" />
-        <MainButton class="button" text="Create account" />
+        <MainButton
+          @click="() => emit('callForm', 'authorization')"
+          text="Sing in"
+          class="button sing-in--button"
+        />
+        <MainButton
+          @click="() => emit('callForm', 'registration')"
+          text="Create account"
+          class="button"
+        />
       </section>
     </main>
   </div>
