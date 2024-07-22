@@ -2,14 +2,20 @@
 type Props = {
   placeholder?: string
   inputType: string
+  isInValid?: boolean
 }
+const props = defineProps<Props>()
 
-defineProps<Props>()
 const model = defineModel<string>()
 </script>
 
 <template>
-  <input :placeholder="placeholder" v-model="model" class="text-input" :type="inputType" />
+  <input
+    :placeholder="placeholder"
+    v-model="model"
+    :class="'text-input' + (isInValid ? ' invalid' : '')"
+    :type="inputType"
+  />
 </template>
 
 <style scoped>
@@ -26,5 +32,9 @@ const model = defineModel<string>()
   &:focus {
     outline: 2px solid var(--color-main-white);
   }
+}
+
+.invalid {
+  border: 3px solid var(--color-red);
 }
 </style>

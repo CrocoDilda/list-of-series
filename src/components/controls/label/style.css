@@ -1,0 +1,24 @@
+.label {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.visibility {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  fill: var(--color-main-white);
+  height: 20px;
+  width: 20px;
+  background-color: transparent;
+  border-radius: 5px;
+  &:focus-visible {
+    outline: 3px solid var(--color-main-white);
+  }
+}
+
+.label--error {
+  color: var(--color-red);
+}

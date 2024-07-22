@@ -1,6 +1,7 @@
 .wrapper {
   display: grid;
-  height: 100vh;
+
+  height: 100%;
 }
 
 .app-name {

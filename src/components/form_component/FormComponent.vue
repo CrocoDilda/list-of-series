@@ -32,6 +32,5 @@ function changeActiveForm(page: string) {
 .wrapp {
   display: grid;
   align-content: center;
-  height: 100vh;
 }
 </style>

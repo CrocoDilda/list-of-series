@@ -7,6 +7,8 @@
   --color-red: #bd1600;
   --color-blue: #647eff;
   --color-gray: #ffffff1a;
+
+  --container: 1400px;
 }
 
 /* color: hsla(160, 100%, 37%, 1);
@@ -31,6 +33,25 @@ body {
     outline-offset: 2px;
     outline: 3px solid var(--color-main-green);
   }
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 10px;
+  }
+
+  /* Define the thumb style */
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-main-green);
+    border-radius: 5px;
+  }
+
+  /* Define the track style */
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+}
+
+.container {
+  padding: 0 calc((100vw - var(--container)) / 2);
 }
 
 .author--icon {

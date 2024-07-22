@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import './style.css'
 import { inject } from 'vue'
+
 import IconClapperboard from '../../components/icons/IconClapperboard.vue'
 import MainButton from '../../components/controls/button/MainButton.vue'
-import './style.css'
 const appName = inject('appName')
 
 const emit = defineEmits(['callForm'])
