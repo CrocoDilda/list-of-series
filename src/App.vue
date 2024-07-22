@@ -11,7 +11,7 @@ provide('appName', appName)
   <header class="header">
     <p class="app-name">{{ appName }}</p>
   </header>
-  <StartPage v-if="false" />
+  <StartPage />
 </template>
 
 <style scoped>

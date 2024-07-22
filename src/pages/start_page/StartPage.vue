@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 
 import WelcomeScrin from '../welcome_screen/WelcomeScreen.vue'
-import FormItem from '../form_item/FormItem.vue'
+import FormComponent from '../../components/form_component/FormComponent.vue'
 
 const startScreenActive = ref(true)
 const formItemActive = ref(false)
@@ -19,7 +19,7 @@ function callForm(page: string) {
   <div v-if="startScreenActive" class="start--wrapper">
     <WelcomeScrin @callForm="callForm" class="start-screen" />
   </div>
-  <FormItem v-if="formItemActive" :startPage="formPage" />
+  <FormComponent v-if="formItemActive" :startPage="formPage" />
 </template>
 
 <style scoped>
