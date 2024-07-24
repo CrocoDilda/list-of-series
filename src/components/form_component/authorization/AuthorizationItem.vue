@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import '../children-style.css'
 
-import { ref, inject } from 'vue'
+import { ref } from 'vue'
 
 import LabelItem from '../../../components/controls/label/LabelItem.vue'
 import MainButton from '../../../components/controls/button/MainButton.vue'
@@ -33,7 +33,6 @@ const userData = ref<UserData>({
 const errors = ref<Errors>({})
 const errorMessage = ref('')
 const loading = ref<boolean>(false)
-let userIsAuthorized = inject('userIsAuthorized')
 
 function isValid(name: string, minLength: number, maxLength: number): string | null {
   if (!name) return `Required field`
