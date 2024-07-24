@@ -5,110 +5,26 @@ import { ref } from 'vue'
 
 import LabelItem from '../../../components/controls/label/LabelItem.vue'
 import MainButton from '../../../components/controls/button/MainButton.vue'
-import IconLoading from '../../../components/icons/IconLoading.vue'
 
 const emit = defineEmits(['changeActiveForm'])
 
-type UserData = {
-  name: string
-  password: string
-}
-
-type Errors = {
-  name?: string
-  password?: string
-}
-
-const userData = ref<UserData>({
-  name: '',
-  password: ''
-})
-
-const errors = ref<Errors>({})
 const errorMessage = ref('')
-const loading = ref<boolean>(false)
-
-function isValid(name: string, minLength: number, maxLength: number): string | null {
-  if (!name) return `Required field`
-  if (name.length < minLength) return `Must be at least ${minLength} characters`
-  if (name.length > maxLength) return `Must be no more than ${maxLength} characters`
-
-  return null
-}
-
-function validate(): boolean {
-  errors.value = {}
-
-  const nameError = isValid(userData.value.name, 2, 25)
-  if (nameError) errors.value.name = nameError
-
-  const passwordError = isValid(userData.value.password, 6, 25)
-  if (passwordError) errors.value.password = passwordError
-
-  return !Object.keys(errors.value).length
-}
-
-async function submit() {
-  if (validate()) {
-    loading.value = true
-    try {
-      const success = await pushData(userData.value.name, userData.value.password)
-      if (!success) {
-        errorMessage.value = 'Error. Check that the entered data is correct'
-      } else {
-        errorMessage.value = ''
-        console.log('Login successful')
-      }
-    } catch (error) {
-      console.error('An unexpected error occurred:', error)
-      errorMessage.value = 'An unexpected error occurred. Please try again later.'
-    } finally {
-      loading.value = false
-    }
-  }
-}
-
-async function pushData(userName: string, password: string): Promise<boolean> {
-  try {
-    const url = `https://73509f220638bf50.mokky.dev/users?name=${userName}&password=${password}`
-
-    const response = await fetch(url)
-    const data = await response.json()
-
-    return data[0]?.name === userName
-  } catch (error) {
-    console.error('Error during fetch:', error)
-    return false
-  }
-}
 </script>
 
 <template>
   <div class="wrappe">
-    <IconLoading class="loading" v-if="loading" />
     <div class="inner">
-      <h2 class="title">Authorization</h2>
-      <LabelItem
-        v-model="userData.name"
-        :errors="errors.name"
-        labelTitle="Unique name"
-        placeholder="My-wonderful_name"
-        inputType="text"
-      />
-      <LabelItem
-        v-model="userData.password"
-        :errors="errors.password"
-        labelTitle="Create password"
-        placeholder="********"
-        inputType="password"
-      />
+      <h2 class="title">Registration</h2>
+      <LabelItem labelTitle="Unique name" placeholder="My-wonderful_name" inputType="text" />
+      <LabelItem labelTitle="Create password" placeholder="********" inputType="password" />
+      <LabelItem labelTitle="Repeat password" placeholder="********" inputType="password" />
       <div class="innerr">
-        <MainButton @click="submit" type="button" class="button" text="Login" />
+        <MainButton type="button" class="button" text="Register" />
         <MainButton
-          @click="() => emit('changeActiveForm', 'registration')"
+          @click="() => emit('changeActiveForm', 'authorization')"
           type="button"
           class="change-form"
-          text="Register"
+          text="Login"
         />
       </div>
       <p class="error">{{ errorMessage }}</p>
