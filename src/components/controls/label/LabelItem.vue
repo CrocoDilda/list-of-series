@@ -2,36 +2,28 @@
 import './style.css'
 
 import TextInput from '../../controls/text_input/TextInput.vue'
-import { ref, computed, watch } from 'vue'
+import { ref } from 'vue'
 import PassHidden from '../../icons/PassHidden.vue'
 import PassShow from '../../icons/PassShow.vue'
 type Props = {
   labelTitle?: string
   placeholder?: string
   inputType: string
-  valueInvalid?: boolean
+  errors?: string | null
 }
 const props = defineProps<Props>()
 
 const inputTypeRef = ref(props.inputType)
 const inputValue = ref('')
-const inputInvalid = ref(props.valueInvalid)
-const minLength = computed(() => (inputTypeRef.value === 'text' ? 2 : 6))
-const maxLength = ref(25)
+
+const model = defineModel<string>()
+
+function returnInputValue() {
+  model.value = inputValue.value
+}
 
 function changeInputType() {
   inputTypeRef.value = inputTypeRef.value === 'password' ? 'text' : 'password'
-}
-function validateInput() {
-  if (inputValue.value.length < minLength.value && inputValue.value.length < maxLength.value) {
-    inputInvalid.value = true
-    return `Min length ${minLength.value} symbol`
-  } else if (inputValue.value.length >= maxLength.value + 1) {
-    inputInvalid.value = true
-    return `Max length ${maxLength.value} symbol`
-  } else {
-    inputInvalid.value = false
-  }
 }
 </script>
 
@@ -39,14 +31,13 @@ function validateInput() {
   <label class="label">
     {{ labelTitle }}
     <TextInput
-      @input="validateInput"
+      @input="returnInputValue"
       v-model="inputValue"
       :placeholder="placeholder"
       :inputType="inputTypeRef"
-      :isInValid="inputInvalid"
     />
 
-    <p v-if="inputInvalid" class="label--error">{{ validateInput() }}</p>
+    <p class="label--error">{{ errors }}</p>
 
     <button
       @click="changeInputType"
