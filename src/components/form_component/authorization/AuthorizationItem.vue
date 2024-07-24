@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import '../children-style.css'
 
-import { ref } from 'vue'
+import { ref, inject } from 'vue'
 
 import LabelItem from '../../../components/controls/label/LabelItem.vue'
 import MainButton from '../../../components/controls/button/MainButton.vue'
 import IconLoading from '../../../components/icons/IconLoading.vue'
+
+import { useCounterStore } from '../../../stores/counter'
+
+const autorizated = useCounterStore()
+
+console.log()
 
 const emit = defineEmits(['changeActiveForm'])
 
@@ -27,6 +33,7 @@ const userData = ref<UserData>({
 const errors = ref<Errors>({})
 const errorMessage = ref('')
 const loading = ref<boolean>(false)
+let userIsAuthorized = inject('userIsAuthorized')
 
 function isValid(name: string, minLength: number, maxLength: number): string | null {
   if (!name) return `Required field`
@@ -57,7 +64,7 @@ async function submit() {
         errorMessage.value = 'Error. Check that the entered data is correct'
       } else {
         errorMessage.value = ''
-        console.log('Login successful')
+        autorizated.userIsAuthorized = true
       }
     } catch (error) {
       console.error('An unexpected error occurred:', error)
