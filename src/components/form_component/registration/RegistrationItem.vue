@@ -101,7 +101,7 @@ async function validate(): Promise<boolean> {
 // Функция обработки отправки формы
 async function submit() {
   if (await validate()) {
-    console.log('Form is valid', userData.value)
+    // console.log('Form is valid', userData.value)
     pushData(userData.value.name, userData.value.password)
   } else {
     console.log('Form is invalid')
@@ -130,7 +130,6 @@ async function pushData(userName: string, password: string) {
     }
     pushToLocalStorage(userData.value.name)
     const responseData = await res.json()
-    console.log('Response from server:', responseData)
   } catch (error) {
     console.error('Error during fetch:', error)
   } finally {

@@ -10,12 +10,14 @@ const props = defineProps<Props>()
 <template>
   <ul class="wraper">
     <CardComponent
-      title="Тайны дворцовых переворотов. Россия, век XVIII. Фильм 5. Вторая невеста императора (2003)"
-      genre="Драмма"
-      year="2022"
-      length="120"
+      v-for="(item, index) in list"
+      :key="index"
+      :title="item.movieName"
+      :genre="item.movieGenre"
+      :year="item.movieYear"
+      :length="item.movieLength"
+      :image="item.movieImage"
     />
-    <!-- <CardComponent v-for="item in list" :key="12" /> -->
   </ul>
 </template>
 

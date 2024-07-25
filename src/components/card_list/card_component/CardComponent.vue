@@ -4,6 +4,7 @@ type Props = {
   genre: string
   year: string
   length: string
+  image: string
 }
 
 defineProps<Props>()
@@ -12,11 +13,7 @@ defineProps<Props>()
 <template>
   <li>
     <button class="card">
-      <img
-        class="card--image"
-        src="https://image.openmoviedb.com/kinopoisk-images/1599028/4b27e219-a8a5-4d85-9874-57d6016e0837/x1000"
-        alt="movies"
-      />
+      <img class="card--image" :src="image" alt="movies" />
       <div class="card--description">
         <p class="card--title">
           {{ title }}
