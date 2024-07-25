@@ -1,6 +1,9 @@
 <script setup lang="ts">
 type Props = {
   title: string
+  genre: string
+  year: string
+  length: string
 }
 
 defineProps<Props>()
@@ -18,10 +21,10 @@ defineProps<Props>()
         <p class="card--title">
           {{ title }}
         </p>
-        <p class="card--genre">Драмма</p>
+        <p class="card--genre">{{ genre }}</p>
         <div class="card--inner">
-          <p class="card--year">2020</p>
-          <p class="card--length">120 min</p>
+          <p class="card--year">{{ year }}</p>
+          <p class="card--length">{{ length }} min</p>
         </div>
       </div>
     </button>

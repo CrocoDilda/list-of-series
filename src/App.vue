@@ -1,21 +1,18 @@
 <script setup lang="ts">
 import '../author'
-import { provide, ref, watch } from 'vue'
+import { provide, ref, watch, onMounted } from 'vue'
 import StartPage from './pages/start_page/StartPage.vue'
 import HomePage from './pages/home_page/HomePage.vue'
 
 import { useCounterStore } from './stores/counter'
 const autorizated = useCounterStore() // Получаем хранилище
 
-// Добавляю имя приложения в переменную для того, что бы с лучае чего можно было легко поменять
+// Добавляю имя приложения в переменную для того, что бы в случае чего можно было легко поменять
 const appName = 'Delayed Viewing'
 
-const userIsAuthorized = ref(false)
+console.log(!!autorizated.useUserName)
 
 provide('appName', appName)
-provide('userIsAuthorized', userIsAuthorized)
-
-watch(userIsAuthorized, () => console.log(userIsAuthorized))
 </script>
 
 <template>
@@ -23,7 +20,7 @@ watch(userIsAuthorized, () => console.log(userIsAuthorized))
     <header class="header">
       <p class="app-name">{{ appName }}</p>
     </header>
-    <StartPage v-if="!autorizated.userIsAuthorized" />
+    <StartPage v-if="!autorizated.useUserName" />
     <HomePage v-else />
   </div>
 </template>

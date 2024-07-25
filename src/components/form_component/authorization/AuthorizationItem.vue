@@ -8,10 +8,7 @@ import MainButton from '../../../components/controls/button/MainButton.vue'
 import IconLoading from '../../../components/icons/IconLoading.vue'
 
 import { useCounterStore } from '../../../stores/counter'
-
-const autorizated = useCounterStore()
-
-console.log()
+const autorizated = useCounterStore() // Получаем хранилище
 
 const emit = defineEmits(['changeActiveForm'])
 
@@ -34,6 +31,7 @@ const errors = ref<Errors>({})
 const errorMessage = ref('')
 const loading = ref<boolean>(false)
 
+// Функция проверки валидности строки
 function isValid(name: string, minLength: number, maxLength: number): string | null {
   if (!name) return `Required field`
   if (name.length < minLength) return `Must be at least ${minLength} characters`
@@ -42,6 +40,7 @@ function isValid(name: string, minLength: number, maxLength: number): string | n
   return null
 }
 
+// Функция валидации всех полей
 function validate(): boolean {
   errors.value = {}
 
@@ -54,6 +53,7 @@ function validate(): boolean {
   return !Object.keys(errors.value).length
 }
 
+// Функция обработки отправки формы
 async function submit() {
   if (validate()) {
     loading.value = true
@@ -63,7 +63,7 @@ async function submit() {
         errorMessage.value = 'Error. Check that the entered data is correct'
       } else {
         errorMessage.value = ''
-        autorizated.userIsAuthorized = true
+        pushToLocalStorage(userData.value.name)
       }
     } catch (error) {
       console.error('An unexpected error occurred:', error)
@@ -86,6 +86,11 @@ async function pushData(userName: string, password: string): Promise<boolean> {
     console.error('Error during fetch:', error)
     return false
   }
+}
+
+function pushToLocalStorage(value: string) {
+  localStorage.setItem('user', value)
+  autorizated.useUserName = value
 }
 </script>
 

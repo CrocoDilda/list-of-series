@@ -1,16 +1,21 @@
 <script setup lang="ts">
 import CardComponent from './card_component/CardComponent.vue'
+
+type Props = {
+  list: object
+}
+const props = defineProps<Props>()
 </script>
 
 <template>
   <ul class="wraper">
     <CardComponent
       title="Тайны дворцовых переворотов. Россия, век XVIII. Фильм 5. Вторая невеста императора (2003)"
+      genre="Драмма"
+      year="2022"
+      length="120"
     />
-    <CardComponent title="Коносуба" />
-    <CardComponent title="Богиня благославляет этот прекрасный мир" />
-    <CardComponent title="Зелёная книга" />
-    <CardComponent title="Капитан арменика" />
+    <!-- <CardComponent v-for="item in list" :key="12" /> -->
   </ul>
 </template>
 
