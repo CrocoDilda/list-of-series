@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import CardList from '../../components/card_list/CardList.vue'
 import GetStart from '../../components/get_start/GetStart.vue'
+import AddMovie from '../../components/add_movie/AddMovie.vue'
 
 import { onMounted, ref, watch } from 'vue'
 
@@ -34,6 +35,7 @@ watch(list, () => {
 
 <template>
   <div class="wrapper container">
+    <AddMovie />
     <CardList :list="list" v-if="!!list" />
     <GetStart v-else />
   </div>

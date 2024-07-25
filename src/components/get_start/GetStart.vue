@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import MainButton from '../../components/controls/button/MainButton.vue'
+import AddMovie from '../add_movie/AddMovie.vue'
 </script>
 
 <template>
-  <div class="wrapper">
+  <div v-if="false" class="wrapper">
     <h2 class="title">
       В вашей коллекции пока пусто 😞 <br />
       Нажмите, чтобы <span class="title_green">добавить</span> свой первый
@@ -11,6 +12,7 @@ import MainButton from '../../components/controls/button/MainButton.vue'
     </h2>
     <MainButton text="Get start" class="button" />
   </div>
+  <AddMovie />
 </template>
 
 <style scoped>
