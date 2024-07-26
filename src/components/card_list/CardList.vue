@@ -18,6 +18,13 @@ const props = defineProps<Props>()
       :length="item.movieLength"
       :image="item.movieImage"
     />
+    <CardComponent
+      title="1"
+      genre="item.movieGenre"
+      year="item.movieYear"
+      length="item.movieLength"
+      image="item.movieImage"
+    />
   </ul>
 </template>
 

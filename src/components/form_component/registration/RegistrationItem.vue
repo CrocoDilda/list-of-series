@@ -142,6 +142,7 @@ function pushToLocalStorage(value: string) {
   autorizated.useUserName = value
 }
 </script>
+
 <template>
   <div class="wrappe">
     <IconLoading class="loading" v-if="loading" />

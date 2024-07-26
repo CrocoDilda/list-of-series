@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import '../author'
-import { provide, ref, watch, onMounted } from 'vue'
+import { provide } from 'vue'
 import StartPage from './pages/start_page/StartPage.vue'
 import HomePage from './pages/home_page/HomePage.vue'
 
@@ -9,8 +9,6 @@ const autorizated = useCounterStore() // Получаем хранилище
 
 // Добавляю имя приложения в переменную для того, что бы в случае чего можно было легко поменять
 const appName = 'Delayed Viewing'
-
-console.log(!!autorizated.useUserName)
 
 provide('appName', appName)
 </script>

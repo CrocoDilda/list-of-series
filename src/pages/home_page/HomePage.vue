@@ -8,10 +8,14 @@ import { onMounted, ref, watch } from 'vue'
 import { useCounterStore } from '../../stores/counter'
 
 const autorizated = useCounterStore() // Получаем хранилище
-const list = ref<any>()
+const list = ref(<any>[])
+const showAddMovie = ref<boolean>(false)
+
+function closeAddMovie() {
+  showAddMovie.value = !showAddMovie.value
+}
 
 async function mount() {
-  console.log('HomePage')
   try {
     const url = `https://73509f220638bf50.mokky.dev/users?name=${autorizated.useUserName}&_relations=movies`
     const response = await fetch(url)
@@ -21,6 +25,9 @@ async function mount() {
     list.value = data[0].movie.movies
   } catch (error) {
     console.log(error)
+    list.value = false
+  } finally {
+    console.log(list.value)
   }
 }
 
@@ -35,8 +42,8 @@ watch(list, () => {
 
 <template>
   <div class="wrapper container">
-    <AddMovie />
+    <GetStart @callAddMovie="closeAddMovie" v-if="!list" />
     <CardList :list="list" v-if="!!list" />
-    <GetStart v-else />
+    <AddMovie @callAddMovie="closeAddMovie" v-if="showAddMovie" />
   </div>
 </template>

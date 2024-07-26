@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import MainButton from '../../components/controls/button/MainButton.vue'
-import AddMovie from '../add_movie/AddMovie.vue'
+
+const emit = defineEmits(['callAddMovie'])
 </script>
 
 <template>
-  <div v-if="false" class="wrapper">
+  <div class="wrapper">
     <h2 class="title">
       В вашей коллекции пока пусто 😞 <br />
       Нажмите, чтобы <span class="title_green">добавить</span> свой первый
       <span class="title_green">фильм</span> или <span class="title_green">сериал</span> 🤩
     </h2>
-    <MainButton text="Get start" class="button" />
+    <MainButton @click="emit('callAddMovie')" text="Get start" class="button" />
   </div>
-  <AddMovie />
 </template>
 
 <style scoped>
